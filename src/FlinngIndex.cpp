@@ -3,7 +3,7 @@
 
 
 //#define DEBUG
-#define DEBUGTIME
+//#define DEBUGTIME
 
 using namespace std;
 typedef std::chrono::high_resolution_clock Clock;
@@ -313,7 +313,7 @@ void FlinngIndex::search_with_distance(float *queries, unsigned num_queries, uns
    float etime_0;
   std::cout << "[FlinngIndex::search_with_distance]  " << std::endl;
   //begin = Clock::now();
-  begin = std::chrono::high_resolution_clock::now();
+  auto begin = std::chrono::high_resolution_clock::now();
 #endif
 
   float dist;
@@ -329,7 +329,7 @@ void FlinngIndex::search_with_distance(float *queries, unsigned num_queries, uns
   }
 
 #if defined DEBUGTIME  
-  end = Clock::now();
+  auto end = Clock::now();
   etime_0 = (end - begin).count() / 1000000;
 
   std::cout << "[FlinngIndex::search_with_distance] finding distances took " << etime_0 << "ms" << std::endl;
@@ -340,13 +340,13 @@ void FlinngIndex::search_with_distance(float *queries, unsigned num_queries, uns
 void FlinngIndex::fetch_descriptors(long id, float* desc){
 #if defined DEBUGTIME  
   std::cout << "[FlinngIndex::fetch_descriptors]  " << std::endl;
-  begin = Clock::now();
+  auto begin = Clock::now();
 #endif
     memcpy(desc, &(bases[id * dimension]), sizeof(*desc) * dimension);
 
 #if defined DEBUGTIME  
   float etime_0;
-  end = Clock::now();
+  auto end = Clock::now();
   etime_0 = (end - begin).count() / 1000000;
 
   std::cout << "[FlinngIndex::fetch_descriptors] exit. Took " << etime_0 << "ms" << std::endl;

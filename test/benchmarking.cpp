@@ -4,6 +4,9 @@
 #include "FlinngIndex.h"
 #include "utility.h"
 
+using namespace std;
+typedef std::chrono::high_resolution_clock Clock;
+
 void runBenchmark() {
   //omp_set_num_threads(1);
   omp_set_num_threads(80);
